@@ -1,14 +1,9 @@
 import ProverbsList from '../components/proverbs_index';
 import ProverbsDetail from '../components/proverbs_detail';
+import { createContext } from 'react';
 
 import fetch from 'isomorphic-fetch';
-import { createStore } from 'redux';
-import { reducers } from '../store/reducers/index';
-import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
-
-const store = createStore(reducers);
-const makeStore = () => store;
+const MyContext = createContext();
 
 class Index extends React.Component {
 
@@ -27,15 +22,20 @@ class Index extends React.Component {
 
   state = {
     text: "",
+    proverb: null
   }
 
   onChange = (event) => {
     this.setState({ text: event.target.value })
   }
 
+  onSelectProverb = (data) => {
+    this.setState({ proverb: data })
+  }
+
   render() {
     return (
-      <Provider store={store}>
+      <MyContext.Provider>
         <div className="ui grid center aligned">
           <div className="twelve wide column header">
             <div className="ui action input">
@@ -46,14 +46,14 @@ class Index extends React.Component {
             </div>
           </div>
           <div className="six wide column">
-            <ProverbsList data={this.props.data} />
+            <ProverbsList data={this.props.data} selectProverb={this.onSelectProverb} />
           </div>
           <div className="ten wide column">
-            <ProverbsDetail />
+            <ProverbsDetail proverb={this.state.proverb} />
           </div>
         </div>
-      </Provider>
+      </MyContext.Provider>
     )
   }
 }
-export default withRedux(makeStore)(Index);
+export default Index;

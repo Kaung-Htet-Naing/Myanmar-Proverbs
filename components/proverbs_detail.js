@@ -1,15 +1,11 @@
-import { connect } from 'react-redux';
-
-const proverbsDetail = (proverb) => {
+const proverbsDetail = ({ proverb }) => {
   return (
     <div>
-      <h2>{proverb}</h2>
+      <h2>{proverb === null ? "" : proverb.short}</h2>
+      <h4>{proverb === null ? "" : proverb.creator}</h4>
     </div>
   )
 }
 
-const mapStateToProps = ({ proverb }) => ({
-  proverb: proverb
-})
 
-export default connect(mapStateToProps)(proverbsDetail);
+export default proverbsDetail;

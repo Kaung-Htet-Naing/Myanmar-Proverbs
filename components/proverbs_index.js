@@ -1,12 +1,10 @@
-import { selectedProverb } from '../store/actions/index';
-import { connect } from 'react-redux';
-
-const proverbsList = ({ data, selectedProverb }) => {
-
+const proverbsList = ({ data, selectProverb }) => {
+  let i = 1;
   return (
     <div>
       {data.map(d => (
-        <div className="ui huge list" onClick={selectedProverb(d)}>
+        <div className="ui huge list" key={i++}
+          onClick={() => selectProverb(d)}>
           <div className="item">
             <a className="header">
               {d.short}
@@ -15,8 +13,8 @@ const proverbsList = ({ data, selectedProverb }) => {
         </div>
       )
       )}
-    </div>
+    </div >
   )
 }
 
-export default connect(null, { selectedProverb })(proverbsList);
+export default proverbsList;
