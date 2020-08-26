@@ -9,7 +9,7 @@
 1. Search => က-အ
 2. List => search ရှာလို့ရတာကို list နဲ့ပြ
 3. Detail => select လုပ်ထားတဲ့ proverb ကို detail ပြ
-4. feedback => စကားပုံအသစ်ထည့်ရန်
+4. feedback => **စကားပုံအသစ်ထည့်ရန်**
 5. about us
 
 ##Function For Admin
