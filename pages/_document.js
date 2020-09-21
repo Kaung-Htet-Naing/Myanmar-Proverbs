@@ -13,6 +13,7 @@ export default class MyDocument extends Document {
           <meta name="language" content="English" />
           <meta name="author" content="Kaung Htet Naing" />
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+          <link href="https://fonts.googleapis.com/css2?family=Padauk&display=swap" rel="stylesheet"></link>
         </Head>
         <body>
           <Main />

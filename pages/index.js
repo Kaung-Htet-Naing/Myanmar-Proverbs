@@ -52,6 +52,19 @@ class Index extends React.Component {
             <ProverbsDetail proverb={this.state.proverb} />
           </div>
         </div>
+        <style global jsx>
+          {`
+          @font-face{
+            font-family: MMfont;
+            src: url('../NotoSansMyanmar-Regular.ttf');
+          }
+
+          body{
+            font-family: 'MMtfont',sans-serif !important;
+
+          }
+        `}
+        </style>
       </MyContext.Provider>
     )
   }

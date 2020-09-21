@@ -3,17 +3,17 @@ const proverbsList = ({ data, selectProverb }) => {
   return (
     <div>
       {data.map(d => (
-        <div className="ui huge list" key={i++}
-          onClick={() => selectProverb(d)}>
+        <div className="ui huge list" key={i++}>
           <div className="item">
-            <a className="header">
+            <a className="header"
+              onClick={() => selectProverb(d)}>
               {d.short}
             </a>
           </div>
         </div>
       )
       )}
-    </div >
+    </div>
   )
 }
 
