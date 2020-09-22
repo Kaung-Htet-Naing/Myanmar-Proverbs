@@ -1,13 +1,13 @@
 import ProverbsList from '../components/proverbs_index';
 import ProverbsDetail from '../components/proverbs_detail';
-import { createContext } from 'react';
-
+import { getProverbs } from '../redux/actions/counterActions';
 import fetch from 'isomorphic-fetch';
-const MyContext = createContext();
+import { connect } from 'react-redux';
 
 class Index extends React.Component {
 
   static async getInitialProps() {
+
     let response, data;
 
     try {
@@ -25,6 +25,8 @@ class Index extends React.Component {
     proverb: null
   }
 
+
+
   onChange = (event) => {
     this.setState({ text: event.target.value })
   }
@@ -35,7 +37,7 @@ class Index extends React.Component {
 
   render() {
     return (
-      <MyContext.Provider>
+      <div>
         <div className="ui grid center aligned">
           <div className="twelve wide column header">
             <div className="ui action input">
@@ -58,15 +60,22 @@ class Index extends React.Component {
             font-family: MMfont;
             src: url('../NotoSansMyanmar-Regular.ttf');
           }
-
           body{
             font-family: 'MMtfont',sans-serif !important;
-
           }
         `}
         </style>
-      </MyContext.Provider>
+      </div>
     )
   }
 }
-export default Index;
+
+const mapStateToProps = ({ proverbs }) => {
+  return {
+    proverbs
+  }
+}
+
+export default connect(mapStateToProps, {
+  getProverbs
+})(Index);

@@ -1,4 +1,5 @@
 import AdminLayout from '../../components/AdminLayout';
+import React from 'react';
 
 class Admin extends React.Component {
   render() {
@@ -10,5 +11,8 @@ class Admin extends React.Component {
     )
   }
 }
+
+
+
 
 export default Admin;
