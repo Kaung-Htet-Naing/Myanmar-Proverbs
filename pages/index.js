@@ -1,8 +1,10 @@
 import ProverbsList from '../components/proverbs_index';
 import ProverbsDetail from '../components/proverbs_detail';
-import { getProverbs } from '../redux/actions/counterActions';
+import { getProverbs } from '../redux/actions/index';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class Index extends React.Component {
 
@@ -16,7 +18,6 @@ class Index extends React.Component {
     } catch (error) {
       console.log(error)
     }
-
     return { data }
   }
 
@@ -24,8 +25,6 @@ class Index extends React.Component {
     text: "",
     proverb: null
   }
-
-
 
   onChange = (event) => {
     this.setState({ text: event.target.value })
@@ -70,12 +69,18 @@ class Index extends React.Component {
   }
 }
 
-const mapStateToProps = ({ proverbs }) => {
+const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    proverbs
+    proverbs: state.firebase
   }
 }
 
-export default connect(mapStateToProps, {
-  getProverbs
-})(Index);
+// export default compose(
+//   connect(mapStateToProps, null),
+//   firestoreConnect([
+//     { collection: 'proverbs' }
+//   ])
+// )(Index);
+
+export default connect(mapStateToProps)(Index);

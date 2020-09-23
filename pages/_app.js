@@ -7,10 +7,19 @@ import logger from "redux-logger";
 import rootReducer from "../redux/reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const middlewares = [thunk, logger];
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import config from '../config/config'
+
+
+const middlewares = [thunk.withExtraArgument({ getFirestore }), logger];
 
 const store = createStore(
-  rootReducer, composeWithDevTools(applyMiddleware(...middlewares))
+  rootReducer,
+  compose(
+    applyMiddleware(...middlewares),
+    reduxFirestore(config)
+  )
 );
 
 class MyApp extends App {
